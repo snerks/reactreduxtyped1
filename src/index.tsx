@@ -10,5 +10,5 @@ const store = configureStore();
 
 ReactDOM.render(
   <Root store={store} />,
-  document.getElementById('root') as HTMLElement
+  document.getElementById('root') /* as HTMLElement */
 );
