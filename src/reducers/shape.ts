@@ -1,27 +1,4 @@
-// import { Action } from 'redux';
-
-// export type SquareActionTypeNameType = 'Shape/GET_SIZE_SQUARE';
-// export const SquareActionTypeName: SquareActionTypeNameType = 'Shape/GET_SIZE_SQUARE';
-
-export const SquareActionTypeLiteral = 'Shape/GET_SIZE_SQUARE';
-export type SquareActionType = typeof SquareActionTypeLiteral;
-export const SquareActionTypeValue: SquareActionType = SquareActionTypeLiteral;
-
-export const RectangleActionTypeLiteral = 'Shape/GET_SIZE_RECTANGLE';
-export type RectangleActionType = typeof RectangleActionTypeLiteral;
-export const RectangleActionTypeValue: RectangleActionType = RectangleActionTypeLiteral;
-
-export const CircleActionTypeLiteral = 'Shape/GET_SIZE_CIRCLE';
-export type CircleActionType = typeof CircleActionTypeLiteral;
-export const CircleActionTypeValue: CircleActionType = CircleActionTypeLiteral;
-
-export const TriangleActionTypeLiteral = 'Shape/Triangle';
-export type TriangleActionType = typeof TriangleActionTypeLiteral;
-export const TriangleActionTypeValue: TriangleActionType = TriangleActionTypeLiteral;
-
-export const OtherActionTypeLiteral = 'Shape/Other';
-export type OtherActionType = typeof OtherActionTypeLiteral;
-export const OtherActionTypeValue: OtherActionType = OtherActionTypeLiteral;
+import * as ShapeActions from '../actions/shape';
 
 export interface ShapeState {
     kind: string;
@@ -34,52 +11,57 @@ export const initialShapeState: ShapeState = {
 };
 
 export interface SquareAction {
-    type: SquareActionType;
+    type: ShapeActions.SquareActionType;
     size: number;
 }
 
 interface RectangleAction {
-    type: RectangleActionType;
+    type: ShapeActions.RectangleActionType;
     width: number;
     height: number;
 }
 
 interface CircleAction {
-    type: CircleActionType;
+    type: ShapeActions.CircleActionType;
     radius: number;
 }
 
 interface TriangleAction {
-    type: TriangleActionType;
+    type: ShapeActions.TriangleActionType;
     base: number;
     height: number;
 }
 
 interface OtherAction {
-    type: OtherActionType;
+    type: ShapeActions.OtherActionType;
 }
 
 const otherActionInstance: OtherAction = {
-    type: OtherActionTypeValue
+    type: ShapeActions.OtherActionTypeValue
 };
 
-type ShapeAction = SquareAction | RectangleAction | CircleAction | TriangleAction | OtherAction;
+type ShapeAction =
+    SquareAction |
+    RectangleAction |
+    CircleAction |
+    TriangleAction |
+    OtherAction;
 
 export default function shape(
     state: ShapeState = initialShapeState,
     action: ShapeAction = otherActionInstance): ShapeState {
 
     switch (action.type) {
-        case SquareActionTypeValue:
+        case ShapeActions.SquareActionTypeValue:
             return { kind: action.type, area: action.size * action.size };
 
-        case RectangleActionTypeValue:
+        case ShapeActions.RectangleActionTypeValue:
             return { kind: action.type, area: action.width * action.height };
 
-        case CircleActionTypeValue:
+        case ShapeActions.CircleActionTypeValue:
             return { kind: action.type, area: Math.PI * action.radius * action.radius };
 
-        case TriangleActionTypeValue:
+        case ShapeActions.TriangleActionTypeValue:
             return { kind: action.type, area: action.base / 2 * action.height };
 
         default:

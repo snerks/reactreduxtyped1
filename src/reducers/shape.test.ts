@@ -1,7 +1,10 @@
+import {
+    OtherActionTypeValue,
+    SquareActionTypeValue
+} from '../actions/shape';
+
 import shape, {
     initialShapeState,
-    OtherActionTypeValue,
-    SquareActionTypeValue,
     SquareAction
 } from './shape';
 
